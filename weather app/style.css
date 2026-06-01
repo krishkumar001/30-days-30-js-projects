@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    padding: 24px;
+}
+
+.card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+    width: 380px;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.card:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.65); }
+
+.search{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input{
+    display:flex;
+    width:100%;
+    align-items:center;
+    background:#f3f6fb;
+    border-radius:999px;
+    padding:8px 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.input input{
+    flex:1;
+    border:0;
+    background:transparent;
+    padding:10px 12px;
+    outline:none;
+    font-size:15px;
+    color:#0f172a;
+}
+
+.search button{
+    background: linear-gradient(90deg,#2563eb,#06b6d4);
+    border: none;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 6px 18px rgba(3,7,18,0.25);
+}
+
+.search button img{ width:20px; filter:brightness(0) invert(1); }
+
+.weather{
+    text-align:center;
+    padding: 10px 6px 0 6px;
+}
+
+.weather-icon{ width:120px; height:120px; object-fit:contain; margin:0 auto 6px; display:block; }
+
+.temp{ font-size:44px; color:#0f172a; font-weight:700; margin:6px 0; }
+.city{ font-size:18px; color:#475569; font-weight:600; margin-bottom:14px; }
+
+.details{
+    display:flex;
+    gap:10px;
+    justify-content:space-between;
+    margin-top:6px;
+}
+
+.col{
+    flex:1;
+    background:#ffffff;
+    border-radius:10px;
+    padding:12px 8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    box-shadow: 0 4px 14px rgba(16,24,40,0.06);
+}
+
+.col img{ width:32px; height:32px; }
+.col p{ font-size:13px; color:#334155; text-align:center; }
+.col span{ font-weight:700; color:#0f172a; }
+
+@media (max-width:420px){
+    .card{ width:92vw; padding:20px; }
+    .weather-icon{ width:96px; height:96px; }
+    .temp{ font-size:36px; }
+}

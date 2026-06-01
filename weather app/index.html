@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather APP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card">
+    <div class="search">
+        <div class="input">
+            <input type="text" placeholder="Enter city name" spellcheck="false">
+            <button><img  src="images/search-icon.png" alt="Search"></button>
+        </div>
+
+        <div class="error">City not found</div>
+
+        <div class="weather">
+
+            <img src="images/cloudy.png" alt="Cloudy" class="weather-icon">
+            <h1 class="temp">25°C</h1>
+            <h2 class="city">Jamshedpur</h2>
+            
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png" alt="Humidity">
+                    <p><span>60%</span><br>Humidity</p>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png" alt="Wind Speed">
+                    <p><span>15 km/h</span><br>Wind Speed</p>
+                </div>
+                <div class="col">
+                    <img src="images/pressure.png" alt="Pressure">
+                    <p><span>1013 hPa</span><br>Pressure</p>
+                </div>
+            </div> <!-- .details -->
+        </div> <!-- .weather -->
+    </div> <!-- .search -->
+</div> <!-- .card -->
+
+<script>
+    const apiKey = "3b7e95bcf5f2757814cd63f02b5b9ebf"; // Replace with your OpenWeatherMap API key
+    const apiUrl= "https://history.openweathermap.org/data/2.5/aggregated/year?q=London,GB&appid=&units=metric"
+
+    const searchBox = document.querySelector(".search input");
+    const searchButton = document.querySelector(".search button");
+
+    const weatherIcon = document.querySelector(".weather-icon");
+
+    async function checkWeather(city){
+
+
+        
+        const response = await fetch(apiUrl +city+ `&appid=${apiKey}`);
+        var data = await response.json();
+        console.log(data);
+
+        if(response.status == 404){
+            alert("City not found");
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+            return;
+        }else{
+             
+        document.querySelector(".city").innerHTML = data.city.name;
+        document.querySelector(".temp").innerHTML = data.main.temp + "°C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+        document.querySelector(".pressure").innerHTML = data.main.pressure + " hPa";
+
+        if(data.weather[0].main == "Clouds"){
+            weatherIcon.src = "images/cloudy.png";
+        }
+        else if(data.weather[0].main == "Clear"){
+            weatherIcon.src = "images/clear.png";
+        }
+        else if(data.weather[0].main == "Rain"){
+            weatherIcon.src = "images/rainy.png";
+        }
+        else if(data.weather[0].main == "Drizzle"){
+            weatherIcon.src = "images/drizzle.png";
+        }
+        else if(data.weather[0].main == "Mist"){
+            weatherIcon.src = "images/mist.png";
+        }
+    }
+
+
+    }
+
+    searchButton.addEventListener("click", ()=>{
+        checkWeather(searchBox.value);
+    });
+</script>
+
+</body>
+</html>

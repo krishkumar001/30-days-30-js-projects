@@ -1,9 +1,9 @@
 import React from 'react'
 
-const gunnu = () => {
+const gunnumoti = () => {
   return (
     <div>gunnu</div>
   )
 }
 
-export default gunnu
+export default gunnumoti
